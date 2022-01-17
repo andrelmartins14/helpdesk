@@ -1,17 +1,27 @@
 package com.datsistemas.helpdesk.domain;
 
+import com.datsistemas.helpdesk.domain.enums.Perfil;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tecnico extends Pessoa{
+@Entity
+public class Tecnico extends Pessoa implements Serializable {
+    private static  final long serialVersionUIL = 1L;
 
+    @OneToMany(mappedBy = "tecnico")
     private List<Chamado> chamados = new ArrayList<>();
     public Tecnico(){
         super();
+        addPerfil(Perfil.CLIENTE);
     }
 
     public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
         super(id, nome, cpf, email, senha);
+        addPerfil(Perfil.CLIENTE);
 
     }
 
