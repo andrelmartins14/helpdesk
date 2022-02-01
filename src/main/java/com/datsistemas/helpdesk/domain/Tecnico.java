@@ -1,6 +1,7 @@
 package com.datsistemas.helpdesk.domain;
 
 import com.datsistemas.helpdesk.domain.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -12,8 +13,10 @@ import java.util.List;
 public class Tecnico extends Pessoa implements Serializable {
     private static  final long serialVersionUIL = 1L;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private List<Chamado> chamados = new ArrayList<>();
+
     public Tecnico(){
         super();
         addPerfil(Perfil.CLIENTE);
